@@ -2,7 +2,6 @@ import socket
 import time
 from random import randint
 
-#HOST = '10.202.104.153'
 HOST = '127.0.0.1'
 listen_PORT = 1234
 send_PORT = 5678
