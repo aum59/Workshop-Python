@@ -2,9 +2,7 @@ import socket
 import time
 from random import randint
 
-#HOST = '10.202.104.153' P'Poom
-#HOST = '10.3.13.140' P'Ake
-HOST = '10.3.13.140'
+HOST = '10.10.10.10'
 st = []
 
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
