@@ -15,7 +15,7 @@ for i in range(10,80) :
                 s.connect((HOST, i))
                 print('port ', i ,' open')
                 st.append(str(i))
-                s.send(b"Aum")
+                s.send(b"hihi")
                 print('maessage sent')
         except:
                 s.close()
