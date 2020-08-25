@@ -1,25 +1,31 @@
 import socket
+import sys
 import time
+import datetime
 from random import randint
 
-HOST = '10.10.10.10'
-st = []
-
-s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-print('HOST IP ',HOST)
-for i in range(10,80) :
-        #delay = randint(0, 4)
-        #time.sleep(delay)
+host = '192.168.1.1'
+Port = []
+print('HOST IP ', host)
+t1 = datetime.datetime.now()
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+for port in range(10, 1025):
+        delay = 1 / randint(100, 900)
+        time.sleep(delay)
         try:
-                print('try to connect port',i)
-                s.connect((HOST, i))
-                print('port ', i ,' open')
-                st.append(str(i))
-                s.send(b"hihi")
-                print('maessage sent')
+                sock.connect((host, port))
+                print('port {}: open'.format(port))
+                Port.append(str(port))
+        except KeyboardInterrupt:
+                print('Abort Scanning.')
+                sock.close()
+                sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                sys.exit()
         except:
-                s.close()
-                s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-
-print('HOST IP  =>>', HOST)
-print('Open Port >>', st)
+                sock.close()
+                sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+t2 = datetime.datetime.now()
+print('IP ' + host + ' Open Port: ', str(Port).strip('[]').replace("'",''))
+print("time to complete scanning: " + str(t2.minute - t1.minute)
+                             + ':' + str(t2.second - t1.second)
+                             + ':' + str((t2.microsecond - t1.microsecond)%1000000))
